@@ -1,0 +1,7 @@
+The same example as sits in gl-rs but with more wrapping
+for the shaders and some other stuff.  This is just an
+experimental repository to see how a basic game code could
+be structured for a slightly higher level OpenGL binding.
+
+Ignore that this repository exists, it's terrible OpenGL
+handling for long.
