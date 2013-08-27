@@ -77,6 +77,7 @@ impl Shader {
                 let buf = vec::from_elem(len as uint, 0u8);
                 gl::GetShaderInfoLog(id, len, null(),
                                      vec::raw::to_ptr(buf) as *GLchar);
+                gl::DeleteShader(id);
                 Err(ShaderError::new(charbuf_to_str(buf)))
             } else {
                 Ok(~Shader { id: id, ty: ty })
