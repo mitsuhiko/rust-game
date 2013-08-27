@@ -8,6 +8,8 @@ mod game {
     mod program;
     mod vertexarray;
     mod main;
+
+    mod utils;
 }
 
 #[start]

@@ -3,6 +3,9 @@ use glfw;
 
 pub struct Engine;
 
+
+/// Helper object that initializes GLFW and will later provide some
+/// more helpers
 impl Engine {
     pub fn new() -> Engine {
         Engine

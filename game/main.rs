@@ -4,7 +4,7 @@ use gl::types::*;
 
 use game::engine::Engine;
 use game::program::Program;
-use game::shader::Shader;
+use game::shader::{Shader, VertexShaderType, FragmentShaderType};
 use game::vertexarray::VertexArray;
 
 static VS_SRC: &'static str =
@@ -27,19 +27,18 @@ static VERTEX_DATA: [GLfloat, ..6] = [
     -0.5, -0.5,
 ];
 
+
 fn make_vertex_array() -> VertexArray {
     let mut va = VertexArray::new();
     va.set_data(VERTEX_DATA);
     va
 }
 
-fn make_program() -> Program {
-    let mut prog = Program::new();
-    let vs = Shader::new(VS_SRC, gl::VERTEX_SHADER);
-    let fs = Shader::new(FS_SRC, gl::FRAGMENT_SHADER);
-    prog.attach_shader(&vs);
-    prog.attach_shader(&fs);
-    prog.link();
+fn make_program() -> ~Program {
+    let mut prog = do Program::new |linker| {
+        linker.attach(Shader::new(VS_SRC, VertexShaderType).unwrap());
+        linker.attach(Shader::new(FS_SRC, FragmentShaderType).unwrap());
+    }.unwrap();
     prog.bind_frag_data_location("out_color", 0);
     prog.enable_vertex_array("position", 2, gl::FLOAT);
     prog

@@ -6,10 +6,11 @@ use std::sys::size_of;
 
 pub struct VertexArray {
     id: GLuint,
-    vbo: GLuint,
+    priv vbo: GLuint,
 }
 
 impl VertexArray {
+
     pub fn new() -> VertexArray {
         let vao = 0;
         let vbo = 0;
